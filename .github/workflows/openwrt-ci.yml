@@ -75,6 +75,7 @@ jobs:
         run: |
           rm -f ./.config*
           touch ./.config
+          
           # 设置固件大小:
           cat >> .config <<EOF
           CONFIG_TARGET_KERNEL_PARTSIZE=32
