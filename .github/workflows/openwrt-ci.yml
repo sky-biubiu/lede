@@ -62,7 +62,7 @@ jobs:
           git clone https://github.com/jerrykuku/node-request.git
           git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git
           git clone https://github.com/project-openwrt/openwrt-gowebdav.git
-          git clone https://github.com/rufengsuixing/luci-app-adguardhome.git
+          git clone https://github.com/kenzok8/openwrt-packages.git
           git clone https://github.com/lisaac/luci-app-dockerman.git
           git clone https://github.com/tty228/luci-app-serverchan.git
           
@@ -76,12 +76,6 @@ jobs:
           rm -f ./.config*
           touch ./.config
           
-          # 设置固件大小:
-          cat >> .config <<EOF
-          CONFIG_TARGET_KERNEL_PARTSIZE=32
-          CONFIG_TARGET_ROOTFS_PARTSIZE=1024
-          EOF
-
           #
           # ========================固件定制部分========================
           # 
@@ -122,6 +116,12 @@ jobs:
           CONFIG_TARGET_x86_64_Generic=y
           EOF
 
+          # 设置固件大小:
+          cat >> .config <<EOF
+          CONFIG_TARGET_KERNEL_PARTSIZE=32
+          CONFIG_TARGET_ROOTFS_PARTSIZE=1024
+          EOF
+          
           # 固件压缩:
           cat >> .config <<EOF
           CONFIG_TARGET_IMAGES_GZIP=y
@@ -171,8 +171,11 @@ jobs:
           CONFIG_PACKAGE_luci-app-qbittorrent=y
           CONFIG_PACKAGE_luci-app-vsftpd=y
           CONFIG_PACKAGE_luci-app-upnp=y
+          CONFIG_PACKAGE_luci-app-mwan3=y
+          CONFIG_PACKAGE_luci-app-netdata=y
           CONFIG_PACKAGE_luci-app-filetransfer=y
           CONFIG_PACKAGE_luci-app-firewall=y
+          CONFIG_PACKAGE_luci-app-shairplay=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
@@ -183,11 +186,17 @@ jobs:
           CONFIG_PACKAGE_luci-app-aliddns=y
           CONFIG_PACKAGE_luci-app-samba=y
           CONFIG_PACKAGE_luci-app-ramfree=y
-          CONFIG_PACKAGE_luci-app-softethervirtual=y
+          CONFIG_PACKAGE_luci-app-autoreboot=y
+          CONFIG_PACKAGE_luci-app-softethervpn=y
           CONFIG_PACKAGE_luci-app-ddns=y
-          CONFIG_PACKAGE_luci-app-UnblockNeteaseMusic=y
+          CONFIG_DEFAULT_luci-app-unblockmusic=y
           CONFIG_PACKAGE_luci-app-v2ray-server=y
+          CONFIG_DEFAULT_luci-app-nlbwmon=y
+          CONFIG_DEFAULT_luci-proto-bonding=y
           CONFIG_PACKAGE_luci-app-verysync=y
+          CONFIG_UnblockNeteaseMusic_Go=y
+          CONFIG_UnblockNeteaseMusic_NodeJS=y
+          CONFIG_DEFAULT_luci-app-ipsec-vpnd=y
           CONFIG_PACKAGE_luci-app-webadmin=y
           CONFIG_PACKAGE_luci-app-wireguard=y
           CONFIG_PACKAGE_luci-app-wrtbwmon=y
@@ -196,6 +205,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-xlnetacc=y
           CONFIG_PACKAGE_luci-app-wol=y
           CONFIG_PACKAGE_luci-app-sfe=y
+          CONFIG_PACKAGE_luci-app-passwall=y
           CONFIG_PACKAGE_luci-app-gowebdav=y
           CONFIG_PACKAGE_luci-app-jd-dailybonus=y
           CONFIG_PACKAGE_luci-app-adguardhome=y
@@ -207,6 +217,7 @@ jobs:
           cat >> .config <<EOF
           # CONFIG_PACKAGE_luci-theme-argon=y
           CONFIG_PACKAGE_luci-theme-netgear=y
+          CONFIG_PACKAGE_luci-theme-argon_new=y
           EOF
 
           # 常用软件包:
